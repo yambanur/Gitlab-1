@@ -1,0 +1,70 @@
+// VLab2.cpp: определяет точку входа для консольного приложения.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <clocale>
+#include <math.h>
+#include <iomanip>
+
+using namespace std;
+
+int fl=0,m=0, n, nom;
+float sr, *a = NULL, ch, min;
+
+int vyvod()                                                     //вывод массива на экран
+{
+	if (m == 0) cout << "Ошибка! Сначала задайте значение массива\n";
+	else
+	{
+		for (int i = 0; i < n; i++)
+			cout << setprecision (3) << a[i] << " ";
+		cout << "\n";
+	}
+	return 0;
+}
+
+int menu()
+{
+	cout << "Меню:\nВвод элементов массива - 1\nРасчет контрольного значения - 2\nВывод массива на экран - 3\n";
+	cout << "Вывод контрольного значения - 4\nОчистка экрана консоли - 5\nВыход - 0\nЧего изволите?\n";
+	return 0;
+}
+
+int main()                                                      //тело программы
+{
+	setlocale(LC_ALL, "Rus");
+	int j = 0, f = 0;
+	menu();
+	do
+	{
+		cin >> f;
+		if ((f>5)||(f<0)) cout << "Выбрана некорректная операция! Попробуйте снова\n";
+		else
+		{
+			switch (f)                                         //обработка команд пользователя
+			{
+			    case 1: 
+				j = 0;
+				m = 1;
+				cout << "Введите размер массива\n";
+				cin >> n;
+				a = new float[n];
+				cout << "Введите значения элементов массива\n";
+				for (int i = 0; i < n; i++)
+				{
+					cin >> a[i];                                         //заполнение массива пользователем
+					sr += a[i];
+				}
+				cout << "Готово\n";
+				break;
+			    case 2: break;
+			    case 3: vyvod(); break;
+			    case 4: break;
+			    case 5: system("cls"); menu(); break;
+			}
+		}
+	} while (f != 0);
+    return 0;
+}
+
